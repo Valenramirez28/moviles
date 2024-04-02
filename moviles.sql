@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2024 a las 04:55:27
+-- Tiempo de generación: 02-04-2024 a las 18:36:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -47,14 +47,24 @@ CREATE TABLE `celulares` (
 --
 
 INSERT INTO `celulares` (`id`, `marca`, `nombre_modelo`, `memoria_interna`, `memoria_ram`, `resolucion_camara`, `precio`, `stock`, `created_at`, `updated_at`) VALUES
-(2, 'Apple', 'iPhone 13 Pro', '128 GB', '6 GB', '12 Mpx', 2789000, 50, NULL, NULL),
-(3, 'Samsung', 'Galaxi A25', '128 GB', '6 GB', '50Mpx', 950000, 40, NULL, NULL),
-(4, 'Xiaomi', 'Redmi Note 13 pro', '256 GB', '8 GB', '108 Mpx', 900000, 30, NULL, NULL),
-(5, 'Honor', 'Magic 6 Lite', '256 GB', '8 GB', '108 Mpx', 1999000, 25, NULL, NULL),
-(6, 'Motorola', 'G84', '256 GB', '8 GB', '50Mpx', 839900, 20, NULL, NULL),
-(7, 'OPPO', 'Reno 11', '256 GB', '12 GB', '50Mpx', 2499000, 30, NULL, NULL),
-(8, 'TECNO', 'Spark 20Pro', '256 GB', '8 GB', '108 Mpx', 849900, 20, NULL, NULL),
-(9, 'Huawei', 'Nova 11i', '128 GB', '8 GB', '48Mpx', 729900, 15, NULL, NULL);
+(1, 'Apple', 'iPhone 13 Pro', '128 GB', '6 GB', '12 Mpx', 2789000, 50, NULL, '2024-04-02 18:12:45');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `documento` int(11) UNSIGNED NOT NULL,
+  `nombres` varchar(255) NOT NULL,
+  `apellidos` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -89,11 +99,25 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2024_04_01_211817_create_celulares_table', 1);
+(13, '2014_10_12_000000_create_users_table', 1),
+(14, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(15, '2014_10_12_100000_create_password_resets_table', 1),
+(16, '2019_08_19_000000_create_failed_jobs_table', 1),
+(17, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(18, '2024_04_01_211817_create_celulares_table', 1),
+(19, '2024_04_02_121403_create_clientes_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -148,7 +172,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Valentina Mendoza', 'Valen.mza.28@gmail.com', NULL, '$2y$10$lTHRoFK/A5h3BGgGHOSOOuueTxIHa3JcdZy.L7fkwKc5F1br91ovO', NULL, '2024-04-02 04:22:12', '2024-04-02 04:22:12');
+(1, 'Valentina Mendoza', 'valen.mza.28@gmail.com', NULL, '$2y$10$2JgCLmYaHdSv7AhkyP6FyO39PUwPSVMgjW.48HVkCzwxoQ8Uwoewy', NULL, '2024-04-02 18:10:37', '2024-04-02 18:10:37');
 
 --
 -- Índices para tablas volcadas
@@ -158,6 +182,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Indices de la tabla `celulares`
 --
 ALTER TABLE `celulares`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -172,6 +202,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indices de la tabla `password_reset_tokens`
@@ -202,7 +238,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `celulares`
 --
 ALTER TABLE `celulares`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -214,7 +256,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`

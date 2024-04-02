@@ -34,6 +34,10 @@
                             <a class="nav-link" href="{{ route('celulares.index') }}">{{__('Celulares') }}</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('clientes.index') }}">{{__('Clientes') }}</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
